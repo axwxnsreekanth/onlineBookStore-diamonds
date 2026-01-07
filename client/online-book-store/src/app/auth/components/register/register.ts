@@ -8,29 +8,34 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.html',
-  styleUrls: ['./register.css'] // Reusing the same CSS for consistency
+  styleUrls: ['./register.css']
 })
 export class RegisterComponent {
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
-      fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required]
-    }, { validator: this.passwordMatchValidator });
+    this.registerForm = this.fb.group(
+      {
+        fullName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', Validators.required]
+      },
+      {
+        validators: this.passwordMatchValidator
+      }
+    );
   }
 
-  passwordMatchValidator(g: FormGroup) {
-    return g.get('password')?.value === g.get('confirmPassword')?.value
-      ? null : { 'mismatch': true };
+  passwordMatchValidator(group: FormGroup) {
+    return group.get('password')?.value === group.get('confirmPassword')?.value
+      ? null
+      : { mismatch: true };
   }
 
   onRegister() {
     if (this.registerForm.valid) {
-      console.log('Registering user:', this.registerForm.value);
-      // Integration with backend API for book system
+      console.log(this.registerForm.value);
     }
   }
 }

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from './auth/components/login/login';
-import { RegisterComponent } from './auth/components/register/register';
+import { RouterOutlet } from '@angular/router';
+
 @Component({
   selector: 'app-root',
-  imports: [LoginComponent,RegisterComponent],
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
-export class App {
-  protected title = 'online-book-store';
-}
+export class App {}
