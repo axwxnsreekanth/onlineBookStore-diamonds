@@ -1,0 +1,133 @@
+:host {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --error-color: #e74c3c;
+    --text-main: #333;
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+  
+  .auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    padding: 20px;
+  }
+  
+  .auth-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    transition: transform 0.3s ease;
+  }
+  
+  .auth-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  
+  .header p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #edf2f7;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fdfdfd;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+  }
+  
+  .error {
+    color: var(--error-color);
+    font-size: 0.75rem;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .forgot-link {
+    text-align: right;
+    margin-bottom: 25px;
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+  }
+  
+  .login-btn:hover:not(:disabled) {
+    background: #2980b9;
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+  }
+  
+  .login-btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  .footer {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    color: #636e72;
+  }
+  
+  .link-text {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .link-text:hover {
+    text-decoration: underline;
+  }

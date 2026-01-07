@@ -1,0 +1,42 @@
+<div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="header">
+        <h2>Join BookWorld</h2>
+        <p>Create an account to start your collection</p>
+      </div>
+  
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input id="fullName" type="text" formControlName="fullName" placeholder="John Doe">
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" formControlName="email" placeholder="john@example.com">
+        </div>
+  
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password" placeholder="Min. 8 characters">
+        </div>
+  
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="••••••••">
+          <small *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched" class="error">
+            Passwords do not match.
+          </small>
+        </div>
+  
+        <button type="submit" [disabled]="registerForm.invalid" class="login-btn">
+          Create Account
+        </button>
+  
+        <div class="footer">
+          <span>Already have an account? </span>
+          <a routerLink="/login" class="link-text">Log In</a>
+        </div>
+      </form>
+    </div>
+  </div>
