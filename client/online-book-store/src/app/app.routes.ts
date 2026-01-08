@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/components/user-dashboard/user-d
 import { WishlistComponent } from './wishlist/wishlist';
 import { CartComponent } from './cart/cart';
 import { ProfileComponent } from './profile/profile';
+import { PaymentComponent } from './payment/payment';
 
 export const AppRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,5 +27,6 @@ export const AppRoutes: Routes = [
   { path: 'admin/order-management', component: OrderManagementComponent },
 
   // Wildcard for 404
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' },
+  {path:'payment', component:PaymentComponent},
 ];
