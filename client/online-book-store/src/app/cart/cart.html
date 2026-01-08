@@ -1,0 +1,74 @@
+<div class="dashboard-container">
+    <header class="main-header">
+      <div class="header-left">
+        <button routerLink="/dashboard" class="back-btn">← Continue Shopping</button>
+      </div>
+      <div class="logo">Shopping Cart 🛒</div>
+      <div class="header-right">
+        <span class="items-count">{{ cartItems.length }} Items</span>
+      </div>
+    </header>
+  
+    <main class="cart-layout">
+      <section class="cart-items-section">
+        <div class="cart-card" *ngFor="let item of cartItems">
+          <img [src]="item.image" alt="Book Cover" class="item-img">
+          <div class="item-details">
+            <h4>{{ item.title }}</h4>
+            <p>By {{ item.author }}</p>
+            <p class="unit-price">${{ item.price }} per book</p>
+          </div>
+          <div class="item-quantity">
+            <input type="number" [(ngModel)]="item.quantity" min="1">
+          </div>
+          <div class="item-total">
+            <strong>${{ item.price * item.quantity }}</strong>
+          </div>
+          <button class="delete-btn" (click)="removeItem(item.id)">🗑️</button>
+        </div>
+  
+        <div *ngIf="cartItems.length === 0" class="empty-cart">
+          <p>Your cart is empty.</p>
+        </div>
+      </section>
+  
+      <aside class="checkout-section">
+        <div class="checkout-card">
+          <h3>Delivery Address</h3>
+          <form [formGroup]="addressForm">
+            <input type="text" formControlName="fullName" placeholder="Receiver Name">
+            <input type="text" formControlName="street" placeholder="Street Address">
+            <div class="row">
+              <input type="text" formControlName="city" placeholder="City">
+              <input type="text" formControlName="zipCode" placeholder="Pincode">
+            </div>
+          </form>
+  
+          <hr>
+  
+          <div class="price-summary">
+            <div class="summary-line">
+              <span>Subtotal:</span>
+              <span>${{ totalPrice }}</span>
+            </div>
+            <div class="summary-line">
+              <span>Shipping:</span>
+              <span style="color: #2ecc71;">FREE</span>
+            </div>
+            <div class="summary-line total">
+              <span>Total Amount:</span>
+              <span>${{ totalPrice }}</span>
+            </div>
+          </div>
+  
+          <button class="payment-btn" 
+                  [disabled]="addressForm.invalid || cartItems.length === 0"
+                  (click)="proceedToPayment()">
+            Proceed to Payment
+          </button>
+        </div>
+      </aside>
+    </main>
+  </div>
+  
+  

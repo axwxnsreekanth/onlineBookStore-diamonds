@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+    <header class="main-header">
+      <div class="header-left">
+        <button routerLink="/dashboard" class="back-btn">← Back to Home</button>
+      </div>
+      
+      <div class="logo">My Wishlist ❤️</div>
+  
+      <div class="header-right">
+        <button routerLink="/cart" class="cart-nav-btn">
+          Go to Cart 🛒
+        </button>
+      </div>
+    </header>
+  
+    <main class="book-display">
+      <div *ngIf="wishlistBooks.length === 0" class="empty-state">
+        <h3>Your wishlist is empty!</h3>
+        <p>Start liking books to see them here.</p>
+        <button routerLink="/dashboard" class="add-to-cart">Browse Books</button>
+      </div>
+  
+      <div class="book-grid" *ngIf="wishlistBooks.length > 0">
+        <div class="book-card" *ngFor="let book of wishlistBooks">
+          <div class="book-cover">
+            <button class="remove-wish" (click)="removeFromWishlist(book.id)">✖</button>
+            <img src="https://m.media-amazon.com/images/I/715WdnBHqYL._UF1000,1000_QL80_.jpg" alt="Book Cover">
+          </div>
+          <div class="book-info">
+            <h4>{{ book.title }}</h4>
+            <p class="author">{{ book.author }}</p>
+            <p class="price">${{ book.price }}</p>
+            <button class="add-to-cart" (click)="addToCart(book)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  
+  
+  
