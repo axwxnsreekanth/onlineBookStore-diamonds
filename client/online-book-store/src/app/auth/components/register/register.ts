@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../../services/authservice/auth-service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,11 @@ import { RouterLink } from '@angular/router';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group(
       {
         fullName: ['', Validators.required],
@@ -34,8 +39,26 @@ export class RegisterComponent {
   }
 
   onRegister() {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
     }
+
+    const payload = {
+      name: this.registerForm.value.fullName,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password
+    };
+
+    this.authService.register(payload).subscribe({
+      next: (res) => {
+        alert(res); // "User registered successfully"
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        alert('Registration failed');
+      }
+    });
+    
   }
 }
