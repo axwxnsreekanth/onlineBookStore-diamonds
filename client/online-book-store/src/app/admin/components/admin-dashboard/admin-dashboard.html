@@ -1,0 +1,41 @@
+<div class="admin-dashboard">
+  <div class="top-bar">
+    <div class="left-section">
+      <span class="hamburger" (click)="toggleSidebar()">☰</span>
+      <span class="logo">📚 Online Book Store</span>
+    </div>
+  
+    <button class="logout" (click)="logout()">Logout</button>
+  </div>
+  
+    <!-- Sidebar -->
+    <div class="sidebar" [class.active]="sidebarOpen">
+      <ul>
+        <li (click)="navigateTo('user-management')">User Management</li>
+        <li (click)="navigateTo('book-management')">Book Management</li>
+        <li (click)="navigateTo('order-management')">Order Management</li>
+      </ul>
+    </div>
+  
+    <!-- Main content -->
+    <div class="dashboard-content">
+      <h1>Welcome Admin</h1>
+      <p>Manage your users, books, and orders from here.</p>
+  
+      <div class="cards">
+        <div class="card" (click)="navigateTo('user-management')">
+          <h3>User Management</h3>
+        </div>
+        <div class="card" (click)="navigateTo('book-management')">
+          <h3>Book Management</h3>
+        </div>
+        <div class="card" (click)="navigateTo('order-management')">
+          <h3>Order Management</h3>
+        </div>
+        <div class="card">
+          <h3>Charts</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  
