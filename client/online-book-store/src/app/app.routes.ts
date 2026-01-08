@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/components/user-dashboard/user-d
 import { WishlistComponent } from './wishlist/wishlist';
 import { CartComponent } from './cart/cart';
 import { ProfileComponent } from './profile/profile';
+import { PaymentComponent } from './payment/payment';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'user-dashboard', component: DashboardComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'cart', component: CartComponent },
-  {path:'profile', component:ProfileComponent}
+  {path:'profile', component:ProfileComponent},
+  {path:'payment', component:PaymentComponent},
 ];
