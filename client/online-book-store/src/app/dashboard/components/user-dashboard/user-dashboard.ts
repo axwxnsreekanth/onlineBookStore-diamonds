@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 interface Book {
   id: number;
@@ -14,7 +15,7 @@ interface Book {
 @Component({
   selector: 'app-user-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './user-dashboard.html',
   styleUrls: ['./user-dashboard.css']
 })

@@ -1,14 +1,14 @@
 <div class="dashboard-container">
     <header class="main-header">
       <div class="header-left">
-        <button routerLink="/dashboard" class="back-btn">← Back to Home</button>
+        <button routerLink="/user-dashboard" class="back-btn">← Back to Home</button>
       </div>
       
       <div class="logo">My Wishlist ❤️</div>
   
       <div class="header-right">
         <button routerLink="/cart" class="cart-nav-btn">
-          Go to Cart 🛒
+          Go to Cart
         </button>
       </div>
     </header>
@@ -17,7 +17,7 @@
       <div *ngIf="wishlistBooks.length === 0" class="empty-state">
         <h3>Your wishlist is empty!</h3>
         <p>Start liking books to see them here.</p>
-        <button routerLink="/dashboard" class="add-to-cart">Browse Books</button>
+        <button routerLink="/user-dashboard" class="add-to-cart">Browse Books</button>
       </div>
   
       <div class="book-grid" *ngIf="wishlistBooks.length > 0">

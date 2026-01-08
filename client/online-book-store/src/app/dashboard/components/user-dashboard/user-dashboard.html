@@ -5,9 +5,9 @@
         <input type="text" [(ngModel)]="searchQuery" placeholder="Search by title or author...">
       </div>
       <div class="header-actions">
-        <button title="Wishlist">❤️</button>
-        <button title="Cart">🛒</button>
-        <button title="Profile">👤</button>
+        <button routerLink="/wishlist" title="Wishlist">Wishlist ❤️</button>
+        <button routerLink="/cart" title="Cart">Cart</button>
+        <button routerLink="/profile" title="Profile">Profile</button>
         <button class="logout-btn" (click)="logout()">Logout</button>
       </div>
     </header>

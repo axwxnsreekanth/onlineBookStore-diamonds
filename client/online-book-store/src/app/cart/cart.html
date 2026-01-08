@@ -1,7 +1,7 @@
 <div class="dashboard-container">
     <header class="main-header">
       <div class="header-left">
-        <button routerLink="/dashboard" class="back-btn">← Continue Shopping</button>
+        <button routerLink="/user-dashboard" class="back-btn">← Continue Shopping</button>
       </div>
       <div class="logo">Shopping Cart 🛒</div>
       <div class="header-right">
@@ -12,7 +12,7 @@
     <main class="cart-layout">
       <section class="cart-items-section">
         <div class="cart-card" *ngFor="let item of cartItems">
-          <img [src]="item.image" alt="Book Cover" class="item-img">
+          <img src="https://m.media-amazon.com/images/I/715WdnBHqYL._UF1000,1000_QL80_.jpg" alt="Book Cover" class="item-img">
           <div class="item-details">
             <h4>{{ item.title }}</h4>
             <p>By {{ item.author }}</p>
