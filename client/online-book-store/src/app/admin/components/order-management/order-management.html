@@ -1,0 +1,60 @@
+<div class="page-header">
+  <div>
+    <h2>Orders</h2>
+    <p class="muted">Manage and fulfill customer requests</p>
+  </div>
+</div>
+
+<div class="order-card" *ngFor="let order of orders">
+  <div class="main-info-grid">
+    
+    <div class="order-ref">
+      <span class="order-id">{{ order.id }}</span>
+      <span class="muted">{{ order.date | date:'mediumDate' }}</span>
+    </div>
+
+    <div class="book-list">
+      <span class="book-tag" *ngFor="let item of order.items">
+        {{ item.title }} <b>×{{ item.qty }}</b>
+      </span>
+    </div>
+
+    <div class="customer-info">
+      <div class="customer-name">{{ order.user.name }}</div>
+      <div class="muted">ID {{ order.user.id }}</div>
+    </div>
+
+    <div class="status-container">
+      <div class="tracker-mini" *ngIf="order.status !== 'Cancelled'">
+        <div class="tracker-fill" 
+          [style.width]="order.status === 'Placed' ? '33%' : (order.status === 'Shipped' ? '66%' : '100%')">
+        </div>
+      </div>
+      <div class="tracker-labels" *ngIf="order.status !== 'Cancelled'">
+        <span [class.active-label]="order.status === 'Placed'">Placed</span>
+        <span [class.active-label]="order.status === 'Shipped'">Shipped</span>
+        <span [class.active-label]="order.status === 'Delivered'">Delivered</span>
+      </div>
+      <span *ngIf="order.status === 'Cancelled'" class="status cancelled">Cancelled</span>
+    </div>
+
+  </div>
+
+  <div class="action-bar">
+    <div class="price-tag">₹{{ order.total }}</div>
+    
+    <div style="display: flex; gap: 15px; align-items: center;">
+      <select
+        [disabled]="order.status === 'Cancelled'"
+        (change)="updateStatus(order, $any($event.target).value)">
+        <option *ngFor="let s of statuses" [selected]="s === order.status">
+          {{ s }}
+        </option>
+      </select>
+      
+      <button class="btn-text-danger" (click)="deleteOrder(order.id)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

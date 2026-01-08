@@ -1,0 +1,67 @@
+<div class="page-header">
+  <div>
+    <h2>Book Management</h2>
+    <p>Manage your store inventory</p>
+  </div>
+  <button class="primary" (click)="openAdd()">+ Add New Book</button>
+</div>
+
+<div class="filters">
+  <input placeholder="Search books..." [(ngModel)]="searchText">
+
+  <select [(ngModel)]="selectedCategory">
+    <option value="">All Categories</option>
+    <option *ngFor="let cat of categories">{{ cat }}</option>
+  </select>
+
+  <select [(ngModel)]="sortOrder">
+    <option value="">Sort by Price</option>
+    <option value="low">Low → High</option>
+    <option value="high">High → Low</option>
+  </select>
+</div>
+
+<!-- BOOK GRID -->
+<div class="book-grid">
+  <div class="book-card" *ngFor="let book of filteredBooks()">
+    <img [src]="book.imageUrl">
+
+    <h3>{{ book.title }}</h3>
+    <p class="author">{{ book.author }}</p>
+    <p class="desc">{{ book.description }}</p>
+
+    <div class="meta">
+      <span class="category">{{ book.category.name }}</span>
+      <span class="price">₹{{ book.price }}</span>
+    </div>
+
+    <p class="stock" [class.low]="book.stockQuantity <= 2">
+      Stock: {{ book.stockQuantity }}
+    </p>
+
+    <div class="actions">
+      <button (click)="openEdit(book)">Edit</button>
+      <button class="danger" (click)="deleteBook(book.id)">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <h3>{{ isEditMode ? 'Edit Book' : 'Add Book' }}</h3>
+
+    <input placeholder="Title" [(ngModel)]="bookForm.title">
+    <input placeholder="Author" [(ngModel)]="bookForm.author">
+    <input type="number" placeholder="Price" [(ngModel)]="bookForm.price">
+    <input type="number" placeholder="Stock Quantity" [(ngModel)]="bookForm.stockQuantity">
+    <input placeholder="Image URL" [(ngModel)]="bookForm.imageUrl">
+    <input placeholder="Category" [(ngModel)]="bookForm.category.name">
+    <textarea placeholder="Description" [(ngModel)]="bookForm.description"></textarea>
+
+    <div class="modal-actions">
+      <button class="primary" (click)="saveBook()">Save</button>
+      <button (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>

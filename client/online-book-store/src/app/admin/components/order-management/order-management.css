@@ -1,0 +1,145 @@
+/* order-management.css */
+:host {
+    display: block;
+    background-color: #f3f4f6;
+    padding: 2rem;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+  }
+  
+  .page-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+  }
+  
+  /* THE CARD CONTAINER */
+  .order-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  
+  .order-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* TOP ROW: Essential Info */
+  .main-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1.2fr;
+    padding: 1.25rem;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .order-ref {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .order-id {
+    font-weight: 700;
+    color: #4f46e5; /* Indigo */
+    font-size: 0.95rem;
+  }
+  
+  .customer-name {
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  /* BOOK LIST: Making them stand out */
+  .book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .book-tag {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .book-tag b {
+    color: #4f46e5;
+  }
+  
+  /* SLIM TRACKER */
+  .tracker-mini {
+    display: flex;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .tracker-fill {
+    height: 100%;
+    background: #10b981; /* Success Green */
+    border-radius: 10px;
+    transition: width 0.4s ease;
+  }
+  
+  .tracker-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-top: 6px;
+  }
+  
+  .active-label { color: #10b981; }
+  
+  /* PRICE */
+  .price-tag {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #111827;
+    text-align: right;
+  }
+  
+  /* ACTION BAR */
+  .action-bar {
+    background: #f9fafb;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  select {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 0.85rem;
+    outline: none;
+  }
+  
+  .btn-text-danger {
+    color: #dc2626;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
