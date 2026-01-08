@@ -25,8 +25,5 @@ export const AppRoutes: Routes = [
   { path: 'admin/user-management', component: UserManagementComponent },
   { path: 'admin/book-management', component: BookManagementComponent },
   { path: 'admin/order-management', component: OrderManagementComponent },
-
-  // Wildcard for 404
-  { path: '**', redirectTo: 'login' },
   {path:'payment', component:PaymentComponent},
 ];
