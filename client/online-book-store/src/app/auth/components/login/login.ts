@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/authservice/auth-service';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,7 +14,7 @@ import { AuthService } from '../../../services/authservice/auth-service';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  error = '';
+  error: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -29,27 +30,39 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
+    this.error = '';
+
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
 
-    this.authService.login(this.loginForm.value).subscribe({
-      next: (response: any) => {
-        // store auth data
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('role', response.role);
+    try {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response: any) => {
+          // Store authentication data
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('role', response.role);
 
-        // role-based navigation
-        if (response.role === 'CUSTOMER') {
-          this.router.navigate(['/user-dashboard']);
-        } else if (response.role === 'ADMIN') {
-          this.router.navigate(['/admin']);
+          // Role-based navigation
+          if (response.role === 'CUSTOMER') {
+            this.router.navigate(['/user-dashboard']);
+          } else if (response.role === 'ADMIN') {
+            this.router.navigate(['/admin']);
+          }
+        },
+        error: (err) => {
+          // ✅ Handle 400 Invalid credentials
+          if (err.status === 400 && err.error?.message) {
+            this.error = err.error.message; // "Invalid credentials"
+          } else {
+            this.error = 'Something went wrong. Please try again.';
+          }
         }
-      },
-      error: () => {
-        this.error = 'Invalid email or password';
-      }
-    });
+      });
+    } catch (e) {
+      console.error('Login exception:', e);
+      this.error = 'Unexpected error occurred. Please try later.';
+    }
   }
 }

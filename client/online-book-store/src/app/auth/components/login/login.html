@@ -1,39 +1,66 @@
 <div class="auth-wrapper">
-    <div class="auth-card">
-      <div class="header">
-        <h2>Book System Login</h2>
-        <p>Enter your credentials to browse books</p>
-      </div>
-  
-      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input id="email" type="email" formControlName="email" placeholder="email@example.com">
-          <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
-            Please enter a valid email.
-          </small>
-        </div>
-  
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input id="password" type="password" formControlName="password" placeholder="••••••••">
-          <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
-            Password must be at least 6 characters.
-          </small>
-        </div>
-  
-        <div class="forgot-link">
-          <a routerLink="/forgot-password" class="link-text">Forgot Password?</a>
-        </div>
-  
-        <button type="submit" [disabled]="loginForm.invalid" class="login-btn">
-          Login
-        </button>
-  
-        <div class="footer">
-          <span>Don't have an account? </span>
-          <a routerLink="/register" class="link-text">Register Now</a>
-        </div>
-      </form>
+  <div class="auth-card">
+
+    <div class="header">
+      <h2>Book System Login</h2>
+      <p>Enter your credentials to browse books</p>
     </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="email@example.com">
+
+        <small
+          *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          class="error">
+          Please enter a valid email.
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••">
+
+        <small
+          *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          class="error">
+          Password must be at least 6 characters.
+        </small>
+      </div>
+
+      <!-- 🔴 Backend Error Message -->
+      <div class="server-error" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <div class="forgot-link">
+        <a routerLink="/forgot-password" class="link-text">Forgot Password?</a>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="login-btn">
+        Login
+      </button>
+
+      <div class="footer">
+        <span>Don't have an account? </span>
+        <a routerLink="/register" class="link-text">Register Now</a>
+      </div>
+
+    </form>
   </div>
+</div>

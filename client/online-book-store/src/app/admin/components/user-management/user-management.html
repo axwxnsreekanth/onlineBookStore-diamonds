@@ -28,7 +28,7 @@
           <td>#{{ user.id }}</td>
           <td>
             <div class="user-info">
-              <div class="avatar">{{ user.name[0] }}</div>
+              <div class="avatar">{{ user.name ? user.name[0] : '?' }}</div>
               <span>{{ user.name }}</span>
             </div>
           </td>

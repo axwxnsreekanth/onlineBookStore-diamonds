@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../../services/user/user-service';
 
 @Component({
   selector: 'app-user-management',
@@ -9,20 +10,32 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './user-management.html',
   styleUrls: ['./user-management.css']
 })
-export class UserManagementComponent {
+export class UserManagementComponent implements OnInit {
+
   searchText = '';
-
-  users = [
-    { id: 1, name: 'John Doe', email: 'john@gmail.com', role: 'User' },
-    { id: 2, name: 'Jane Smith', email: 'jane@gmail.com', role: 'User' },
-    { id: 3, name: 'Admin One', email: 'admin@store.com', role: 'Admin' }
-  ];
-
+  users: any[] = [];
   selectedUser: any = null;
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.userService.getUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+      },
+      error: (err) => {
+        console.error('Failed to load users', err);
+      }
+    });
+  }
 
   filteredUsers() {
     return this.users.filter(user =>
-      user.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      (user.name ?? '').toLowerCase().includes(this.searchText.toLowerCase()) ||
       user.email.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
